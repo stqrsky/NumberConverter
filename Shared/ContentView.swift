@@ -17,14 +17,15 @@ struct ContentView: View {
         VStack {
             Menu {
                 ForEach(inputSystems.sorted(by: <), id:\.key) { base, name in
-                    Button(action: { inputBase = base }, label: {
-                        Text(name)
-                    })
+                    Button(name) {
+                        inputBase = base
+                    }
                 }
             } label: {
                 Text("Eingaben im \(inputSystems[inputBase] ?? "")")
+                #if os(iOS)
                 Image(systemName: "chevron.down")
-                
+                #endif
             }
 
             
@@ -79,5 +80,6 @@ struct Numberline: View {
                 .minimumScaleFactor(0.2)
         }
         .foregroundColor(.white)
+        .lineLimit(1)
     }
 }

@@ -11,7 +11,13 @@ import SwiftUI
 struct NumberConverterApp: App {
     var body: some Scene {
         WindowGroup {
+            #if os(macOS)
             ContentView()
+                .frame(minWidth: 500)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            #else
+            ContentView()
+            #endif
         }
     }
 }
