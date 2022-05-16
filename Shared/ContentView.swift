@@ -9,15 +9,27 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var numInput = ""
-    let inputBase = 16
+    @State private var inputBase = 10
+    
+    let inputSystems = [2: "Binärsystem", 8: "Oktalsystem", 10: "Dezimalsystem", 16: "Hexadezimalsystem"]
     
     var body: some View {
         VStack {
             Menu {
-                Text("1")
-                Text("2")
+                Button(action: { inputBase = 2 }, label: {
+                    Text("Binärsystem")
+                })
+                Button(action: { inputBase = 8 }, label: {
+                    Text("Oktal")
+                })
+                Button(action: { inputBase = 16}, label: {
+                    Text("Dezimal")
+                })
+                Button(action: { inputBase = 16 }, label: {
+                    Text("Hexadezimal")
+                })
             } label: {
-                Text("Eingabeformat ändern")
+                Text("Eingaben im \(inputSystems[inputBase] ?? "")")
                 Image(systemName: "chevron.down")
                 
             }
