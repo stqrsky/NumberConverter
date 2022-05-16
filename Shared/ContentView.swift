@@ -12,7 +12,15 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("Input")
+            Menu {
+                Text("1")
+                Text("2")
+            } label: {
+                Text("Eingabeformat ändern")
+                Image(systemName: "chevron.down")
+                
+            }
+
             
             TextField("Your input", text: $numInput)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
