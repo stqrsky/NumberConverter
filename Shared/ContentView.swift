@@ -16,18 +16,11 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Menu {
-                Button(action: { inputBase = 2 }, label: {
-                    Text("Binärsystem")
-                })
-                Button(action: { inputBase = 8 }, label: {
-                    Text("Oktal")
-                })
-                Button(action: { inputBase = 16}, label: {
-                    Text("Dezimal")
-                })
-                Button(action: { inputBase = 16 }, label: {
-                    Text("Hexadezimal")
-                })
+                ForEach(inputSystems.sorted(by: <), id:\.key) { base, name in
+                    Button(action: { inputBase = base }, label: {
+                        Text(name)
+                    })
+                }
             } label: {
                 Text("Eingaben im \(inputSystems[inputBase] ?? "")")
                 Image(systemName: "chevron.down")
