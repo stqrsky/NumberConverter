@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var numInput = ""
+    let inputBase = 16
     
     var body: some View {
         VStack {
@@ -28,10 +29,10 @@ struct ContentView: View {
             ZStack {
                 Color("CardBackgroundColor")
                 VStack(spacing: 10) {
-                    Numberline(number: numInput == "" ? "- " : numInput, base: "2")
-                    Numberline(number: "12341234", base: "8")
-                    Numberline(number: "12349124872", base: "10")
-                    Numberline(number: "A12323FBE", base: "16")
+                    Numberline(number: numberSystemResult(forBase: 2), base: "2")
+                    Numberline(number: numberSystemResult(forBase: 8), base: "8")
+                    Numberline(number: numberSystemResult(forBase: 10), base: "10")
+                    Numberline(number: numberSystemResult(forBase: 16), base: "16")
                 }
                 .padding()
             }
@@ -42,6 +43,14 @@ struct ContentView: View {
         }
         .padding()
     }
+    
+    func numberSystemResult(forBase base: Int) -> String {
+        if let decimal = UInt(numInput, radix: inputBase) {
+            return String(decimal, radix: base).uppercased()
+        }
+        return "-"
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
