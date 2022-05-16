@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var numInput = ""
+    
     var body: some View {
         VStack {
             Text("Input")
             
-            Text("Input 2")
+            TextField("Your input", text: $numInput)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
             ZStack {
-                Color(.blue)
+                Color("CardBackgroundColor")
                 VStack(spacing: 10) {
-                    Numberline(number: "101001", base: "2")
+                    Numberline(number: numInput == "" ? "- " : numInput, base: "2")
                     Numberline(number: "12341234", base: "8")
                     Numberline(number: "12349124872", base: "10")
                     Numberline(number: "A12323FBE", base: "16")
@@ -26,6 +30,7 @@ struct ContentView: View {
             .cornerRadius(10)
             .shadow(radius: 3)
             .frame(height: 200)
+            .padding(.top, 5)
         }
         .padding()
     }
@@ -34,6 +39,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            
     }
 }
 
